@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect, } from 'react-redux';
 import { Link, } from 'react-router-dom';
+import { addNote,} from '../reducers/notes'
 import { Form, Header, Button } from 'semantic-ui-react';
 
 class NoteForm extends React.Component {
@@ -8,11 +9,10 @@ class NoteForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { dispatch, id, } = this.props;
+    const { dispatch, } = this.props;
     const { name, description, } = this.state;
-    const note = { name, description, id, complete: false, };
-    dispatch({ type: 'ADD_NOTE', note,});
-    dispatch({ type: 'INC_ID', });
+    const note = { name, description, };
+    dispatch(addNote(note))
     this.setState({ name: '', description: '', });
     this.props.history.goBack();
   }

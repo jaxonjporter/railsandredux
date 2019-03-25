@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, } from 'react-redux';
-import { Link, } from 'react-router-dom';
-import { Form, Header, Button, Card } from 'semantic-ui-react';
+import {editNote,} from '../reducers/notes';
+import { Form, Card } from 'semantic-ui-react';
 
 class EditForm extends React.Component {
   state = { id: this.props.note.id, name: '', description: '', };
@@ -11,7 +11,7 @@ class EditForm extends React.Component {
     const { dispatch, } = this.props;
     const { name, description, id, } = this.state;
     const note = { name, description, id, };
-    dispatch({ type: 'EDIT_NOTE', note,});
+    dispatch(editNote(note));
     this.props.toggle()
     this.setState({ name: '', description: '', });
   }

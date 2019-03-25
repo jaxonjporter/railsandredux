@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect, } from 'react-redux';
-import { Link, } from "react-router-dom";
+import { delNote, } from "../reducers/notes";
 import { Button, Card, } from "semantic-ui-react"
 import EditForm from './EditForm';
 
@@ -27,8 +27,10 @@ render () {
     </Card.Content>
    }
     <Card.Content extra>
-    <Button onClick={() => this.props.dispatch({ type: 'DELETE_NOTE', id })}>Delete</Button>
-    <Button onClick={() => this.toggle()}> Edit</Button>
+    <div className='ui two buttons'>
+      <Button basic color="red" onClick={() => this.props.dispatch(delNote(id))}>Delete</Button>
+      <Button basic color="yellow" onClick={() => this.toggle()}> Edit</Button>
+    </div>
     </Card.Content>
     </Card>
     
